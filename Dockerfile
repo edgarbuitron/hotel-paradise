@@ -9,6 +9,14 @@ RUN a2enmod rewrite
 # Copiar proyecto
 COPY . /var/www/html/
 
+# DIAGNÓSTICO COMPLETO
+RUN echo "=== DIAGNÓSTICO INICIO ==="
+RUN echo "1. LISTANDO RAÍZ:" && ls -la /var/www/html/
+RUN echo "2. ¿EXISTE PUBLIC?:" && ls -la /var/www/html/public/ 2>/dev/null || echo "NO EXISTE public/"
+RUN echo "3. CONTENIDO DE PUBLIC:" && ls -la /var/www/html/public/ 2>/dev/null || echo "No se puede listar public"
+RUN echo "4. BUSCANDO INDEX.PHP:" && find /var/www/html -name "index.php" 2>/dev/null | head -10
+RUN echo "=== DIAGNÓSTICO FIN ==="
+
 # Configurar Apache para usar PUBLIC como document root
 ENV APACHE_DOCUMENT_ROOT /var/www/html/public
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
