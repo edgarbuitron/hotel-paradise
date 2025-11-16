@@ -9,16 +9,10 @@ RUN a2enmod rewrite
 # Copiar proyecto
 COPY . /var/www/html/
 
-# Configurar Apache para servir desde la raíz directamente
-ENV APACHE_DOCUMENT_ROOT /var/www/html
+# Configurar Apache para usar PUBLIC como document root
+ENV APACHE_DOCUMENT_ROOT /var/www/html/public
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
-
-# Crear .htaccess en raíz para redirecciones
-RUN echo "RewriteEngine On" > /var/www/html/.htaccess
-RUN echo "RewriteCond %{REQUEST_FILENAME} !-f" >> /var/www/html/.htaccess
-RUN echo "RewriteCond %{REQUEST_FILENAME} !-d" >> /var/www/html/.htaccess
-RUN echo "RewriteRule ^(.*)$ index.php [QSA,L]" >> /var/www/html/.htaccess
 
 # Permisos
 RUN chown -R www-data:www-data /var/www/html
