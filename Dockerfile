@@ -10,21 +10,24 @@ RUN a2enmod rewrite
 COPY . /var/www/html/
 
 # DIAGNÓSTICO COMPLETO
-RUN echo "=== DIAGNÓSTICO INICIO ==="
-RUN echo "1. LISTANDO RAÍZ:" && ls -la /var/www/html/
-RUN echo "2. ¿EXISTE PUBLIC?:" && ls -la /var/www/html/public/ 2>/dev/null || echo "NO EXISTE public/"
-RUN echo "3. CONTENIDO DE PUBLIC:" && ls -la /var/www/html/public/ 2>/dev/null || echo "No se puede listar public"
-RUN echo "4. BUSCANDO INDEX.PHP:" && find /var/www/html -name "index.php" 2>/dev/null | head -10
-RUN echo "=== DIAGNÓSTICO FIN ==="
+RUN echo "=== DIAGNÓSTICO INICIO ===" && \
+    echo "1. LISTANDO RAÍZ:" && ls -la /var/www/html/ && \
+    echo "2. ¿EXISTE PUBLIC?:" && ls -la /var/www/html/public/ 2>/dev/null || echo "NO EXISTE public/" && \
+    echo "3. CONTENIDO DE PUBLIC:" && find /var/www/html/public -type f 2>/dev/null | head -10 || echo "No hay archivos en public" && \
+    echo "4. BUSCANDO INDEX.PHP:" && find /var/www/html -name "index.php" 2>/dev/null | head -5 && \
+    echo "=== DIAGNÓSTICO FIN ==="
 
-# Configurar Apache para usar PUBLIC como document root
-ENV APACHE_DOCUMENT_ROOT /var/www/html/public
-RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
-RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
+# Configurar Apache para usar RAÍZ directamente (no public)
+ENV APACHE_DOCUMENT_ROOT /var/www/html
+RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf && \
+    sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
+
+# Forzar index.php como archivo por defecto
+RUN echo "DirectoryIndex index.php index.html" >> /etc/apache2/apache2.conf
 
 # Permisos
-RUN chown -R www-data:www-data /var/www/html
-RUN chmod -R 755 /var/www/html
+RUN chown -R www-data:www-data /var/www/html && \
+    chmod -R 755 /var/www/html
 
 EXPOSE 80
 CMD ["apache2-foreground"]
