@@ -1,12 +1,24 @@
 RewriteEngine On
 
-# Redirigir todas las solicitudes a index.php
+# Si la ruta no es un archivo existente
 RewriteCond %{REQUEST_FILENAME} !-f
+# Si la ruta no es un directorio existente  
 RewriteCond %{REQUEST_FILENAME} !-d
+# Redirigir todo a index.php
 RewriteRule ^(.*)$ index.php [QSA,L]
 
-# Seguridad - evitar acceso a archivos sensibles
-<Files ~ "\.(env|json|config.js|md|gitignore|gitattributes|lock)$">
+# Permitir acceso a archivos estáticos
+RewriteCond %{REQUEST_FILENAME} \.(css|js|png|jpg|jpeg|gif|ico)$ [NC]
+RewriteRule . - [L]
+
+# Redirección para URLs amigables
+RewriteRule ^habitaciones/?$ habitaciones.php [L]
+RewriteRule ^reservar/?$ reservar.php [L]
+RewriteRule ^servicios/?$ servicios.php [L]
+RewriteRule ^confirmacion/?$ confirmation.php [L]
+
+# Configuración de seguridad
+<Files ~ "\.(env|json|config.js|md|gitignore|gitattributes|lock|sql)$">
     Order allow,deny
     Deny from all
 </Files>
