@@ -9,20 +9,23 @@ RUN a2enmod rewrite
 # Copiar proyecto
 COPY . /var/www/html/
 
-# DIAGNÓSTICO COMPLETO
-RUN echo "=== DIAGNÓSTICO INICIO ===" && \
-    echo "1. LISTANDO RAÍZ:" && ls -la /var/www/html/ && \
-    echo "2. ¿EXISTE PUBLIC?:" && ls -la /var/www/html/public/ 2>/dev/null || echo "NO EXISTE public/" && \
-    echo "3. CONTENIDO DE PUBLIC:" && find /var/www/html/public -type f 2>/dev/null | head -10 || echo "No hay archivos en public" && \
-    echo "4. BUSCANDO INDEX.PHP:" && find /var/www/html -name "index.php" 2>/dev/null | head -5 && \
-    echo "=== DIAGNÓSTICO FIN ==="
+# CREAR index.php si no existe
+RUN if [ ! -f "/var/www/html/index.php" ]; then \
+    echo '<?php header("Location: public/index.php"); exit(); ?>' > /var/www/html/index.php; \
+    fi
 
-# Configurar Apache para usar RAÍZ directamente (no public)
+# DIAGNÓSTICO
+RUN echo "=== VERIFICACIÓN ===" && \
+    echo "Archivos en raíz:" && ls -la /var/www/html/ | head -10 && \
+    echo "¿Existe index.php?" && ls -la /var/www/html/index.php 2>/dev/null || echo "NO existe index.php" && \
+    echo "¿Existe public/?" && ls -la /var/www/html/public/ 2>/dev/null | head -5 || echo "NO existe public/"
+
+# Configurar Apache para RAÍZ
 ENV APACHE_DOCUMENT_ROOT /var/www/html
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf && \
     sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
 
-# Forzar index.php como archivo por defecto
+# Forzar index.php
 RUN echo "DirectoryIndex index.php index.html" >> /etc/apache2/apache2.conf
 
 # Permisos
