@@ -1,35 +1,28 @@
 FROM php:8.2-apache
 
-# Instalar extensiones necesarias
-RUN apt-get update && apt-get install -y \
-    libpq-dev \
-    libzip-dev \
-    zip \
-    unzip \
-    && docker-php-ext-install pdo pdo_pgsql pdo_mysql zip
+# Instalar PostgreSQL
+RUN apt-get update && apt-get install -y libpq-dev && docker-php-ext-install pdo pdo_pgsql
 
-# Habilitar mod_rewrite para Apache
+# Habilitar rewrite
 RUN a2enmod rewrite
 
-# Copiar todo el proyecto
+# Copiar proyecto
 COPY . /var/www/html/
 
-# Crear symlink para que public/ sea el document root
-RUN rm -rf /var/www/html/public
-RUN mv /var/www/html/public /var/www/html/public_old
-RUN cp -r /var/www/html/* /var/www/html/public_old/
-RUN mv /var/www/html/public_old /var/www/html/public
+# Configurar Apache para servir desde la raíz directamente
+ENV APACHE_DOCUMENT_ROOT /var/www/html
+RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
+RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
 
-# Configurar Apache para usar public como document root
-RUN sed -i 's|/var/www/html|/var/www/html/public|g' /etc/apache2/sites-available/000-default.conf
-RUN sed -i 's|/var/www/html|/var/www/html/public|g' /etc/apache2/apache2.conf
+# Crear .htaccess en raíz para redirecciones
+RUN echo "RewriteEngine On" > /var/www/html/.htaccess
+RUN echo "RewriteCond %{REQUEST_FILENAME} !-f" >> /var/www/html/.htaccess
+RUN echo "RewriteCond %{REQUEST_FILENAME} !-d" >> /var/www/html/.htaccess
+RUN echo "RewriteRule ^(.*)$ index.php [QSA,L]" >> /var/www/html/.htaccess
 
-# Establecer permisos
+# Permisos
 RUN chown -R www-data:www-data /var/www/html
 RUN chmod -R 755 /var/www/html
 
-# Puerto expuesto
 EXPOSE 80
-
-# Comando de inicio
 CMD ["apache2-foreground"]
