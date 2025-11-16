@@ -24,9 +24,9 @@ if (isset($_GET['reserva_id'])) {
 error_log("=== PÁGINA DE CONFIRMACIÓN - Reserva ID: " . $reserva_id . " ===");
 
 if ($reserva_id) {
-    require_once('../includes/Reservacion.php');
-    require_once('../includes/Huesped.php');
-    require_once('../includes/Habitacion.php');
+    <?php include('includes/cabecera.php'); ?>
+<?php include('includes/menu_publico.php'); ?>
+require_once('includes/Habitacion.php');
     
     // Obtener información de la reserva
     $reservacionObj = new Reservacion();
