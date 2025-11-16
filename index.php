@@ -1,5 +1,5 @@
 <?php
-// Redirección automática al sitio público
+// Redirigir al sitio público
 header('Location: public/index.php');
 exit();
 ?>
