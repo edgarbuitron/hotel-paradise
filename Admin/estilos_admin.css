@@ -1,0 +1,52 @@
+/* estilos_admin.css - ESTILOS ESPECÍFICOS PARA ADMIN */
+
+/* Mejoras para el dashboard */
+.card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+/* Botones de acciones rápidas */
+.btn-outline-primary, 
+.btn-outline-success, 
+.btn-outline-warning, 
+.btn-outline-info {
+    border-width: 2px;
+    border-radius: 10px;
+    padding: 20px 10px;
+    transition: all 0.3s ease;
+}
+
+.btn-outline-primary:hover,
+.btn-outline-success:hover,
+.btn-outline-warning:hover,
+.btn-outline-info:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* Mejoras para tablas en admin */
+.table-admin {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.table-admin th {
+    background: linear-gradient(135deg, #0077b6, #00b4d8);
+    color: white;
+    border: none;
+    padding: 15px;
+}
+
+.table-admin td {
+    padding: 12px 15px;
+    vertical-align: middle;
+}

@@ -1,0 +1,135 @@
+/* estilos_admin.css - ESTILOS ESPECÍFICOS PARA ADMIN */
+
+/* Dashboard cards */
+.dashboard-card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    margin-bottom: 1.5rem;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.dashboard-card .card-body {
+    padding: 1.5rem;
+}
+
+/* Botones de acciones rápidas */
+.btn-action {
+    border-width: 2px;
+    border-radius: 10px;
+    padding: 20px 10px;
+    transition: all 0.3s ease;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.btn-action:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* Mejoras para tablas en admin */
+.table-admin {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    margin-bottom: 2rem;
+}
+
+.table-admin th {
+    background: linear-gradient(135deg, var(--color-caribe), var(--color-turquesa));
+    color: white;
+    border: none;
+    padding: 15px;
+    font-weight: 500;
+}
+
+.table-admin td {
+    padding: 12px 15px;
+    vertical-align: middle;
+    border-color: #e9ecef;
+}
+
+/* Formularios admin */
+.admin-form {
+    background: white;
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    margin-bottom: 2rem;
+}
+
+.admin-form .form-label {
+    font-weight: 500;
+    color: var(--color-dark);
+    margin-bottom: 0.5rem;
+}
+
+/* Badges admin */
+.badge-admin {
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 500;
+    font-size: 0.8rem;
+}
+
+.badge-disponible {
+    background: linear-gradient(135deg, #28a745, #20c997);
+    color: white;
+}
+
+.badge-ocupada {
+    background: linear-gradient(135deg, #dc3545, #e83e8c);
+    color: white;
+}
+
+.badge-mantenimiento {
+    background: linear-gradient(135deg, #ffc107, #fd7e14);
+    color: white;
+}
+
+/* Cards de estadísticas */
+.stats-card {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 15px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.stats-card h3 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.stats-card p {
+    margin-bottom: 0;
+    opacity: 0.9;
+}
+
+/* Sidebar admin (si se necesita en el futuro) */
+.admin-sidebar {
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+    min-height: 100vh;
+    padding: 2rem 1rem;
+}
+
+.admin-sidebar .nav-link {
+    color: #bdc3c7;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.admin-sidebar .nav-link:hover,
+.admin-sidebar .nav-link.active {
+    background: rgba(255,255,255,0.1);
+    color: white;
+}

@@ -1,0 +1,690 @@
+/* styles.css - REDISEÑO ELEGANTE HOTEL PARADISE */
+:root {
+    --color-primary: #2c3e50;
+    --color-secondary: #3498db;
+    --color-accent: #e74c3c;
+    --color-success: #27ae60;
+    --color-warning: #f39c12;
+    --color-gold: #d4af37;
+    --color-gold-light: #f4d03f;
+    --color-gold-dark: #b7950b;
+    --color-dark: #2c3e50;
+    --color-gray: #7f8c8d;
+    --color-light: #ecf0f1;
+    --color-caribe: #0077b6;
+    --color-turquesa: #00b4d8;
+}
+
+/* Reset y estilos base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.7;
+    color: var(--color-dark);
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    min-height: 100vh;
+}
+
+/* Navbar público mejorado */
+.navbar.bg-dark {
+    background: linear-gradient(135deg, var(--color-primary) 0%, #34495e 100%) !important;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    padding: 1rem 0;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+}
+
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1.5rem;
+    background: linear-gradient(135deg, var(--color-gold-light), var(--color-gold));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.btn-reservar {
+    background: linear-gradient(135deg, var(--color-gold), var(--color-gold-light));
+    border: none;
+    border-radius: 25px;
+    padding: 10px 25px !important;
+    color: white !important;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+}
+
+.btn-reservar:hover {
+    background: linear-gradient(135deg, var(--color-gold-dark), var(--color-gold));
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+    color: white !important;
+}
+
+/* Hero Section Rediseñada */
+.hero-section {
+    background: linear-gradient(135deg, 
+        rgba(0, 119, 182, 0.85) 0%, 
+        rgba(0, 180, 216, 0.85) 100%),
+        url('https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: white;
+    padding: 8rem 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.hero-title {
+    font-size: 4rem;
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+    letter-spacing: 3px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.hero-subtitle {
+    font-size: 1.8rem;
+    font-weight: 300;
+    margin-bottom: 2rem;
+    opacity: 0.95;
+    letter-spacing: 1px;
+}
+
+/* Tarjetas de habitaciones - Diseño Premium */
+.room-card {
+    border: none;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s ease;
+    background: white;
+    margin-bottom: 2rem;
+    height: 100%;
+    position: relative;
+}
+
+.room-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--color-gold), var(--color-gold-light), var(--color-gold));
+    z-index: 1;
+}
+
+.room-card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+}
+
+.room-card-img {
+    height: 250px;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+    width: 100%;
+}
+
+.room-card:hover .room-card-img {
+    transform: scale(1.08);
+}
+
+.room-card-body {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 250px);
+}
+
+.room-card-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-dark);
+    margin-bottom: 0.5rem;
+}
+
+.room-card-price {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--color-gold);
+    margin-bottom: 1rem;
+}
+
+.room-card-features {
+    color: var(--color-gray);
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.room-card-description {
+    color: #5a6c7d;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+}
+
+/* Botones elegantes mejorados */
+.btn-elegant {
+    background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-light) 100%);
+    border: none;
+    color: white;
+    padding: 14px 30px;
+    border-radius: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 20px rgba(139, 115, 85, 0.3);
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+}
+
+.btn-elegant:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(139, 115, 85, 0.4);
+    color: white;
+    background: linear-gradient(135deg, var(--color-gold-dark) 0%, var(--color-gold) 100%);
+}
+
+/* Formularios públicos rediseñados */
+.public-form {
+    background: white;
+    border-radius: 20px;
+    padding: 3rem;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+}
+
+.public-form .form-label {
+    font-weight: 600;
+    color: var(--color-dark);
+    margin-bottom: 0.75rem;
+}
+
+.public-form .form-control {
+    border: 2px solid #e9ecef;
+    border-radius: 12px;
+    padding: 12px 15px;
+    transition: all 0.3s ease;
+}
+
+.public-form .form-control:focus {
+    border-color: var(--color-gold);
+    box-shadow: 0 0 0 0.2rem rgba(212, 175, 55, 0.25);
+}
+
+/* Dashboard Admin Mejorado */
+.dashboard-card {
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+.dashboard-card .card-body {
+    padding: 2rem;
+}
+
+/* Tablas admin mejoradas */
+.table-admin {
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    margin-bottom: 2rem;
+    background: white;
+}
+
+.table-admin th {
+    background: linear-gradient(135deg, var(--color-primary), #34495e);
+    color: white;
+    border: none;
+    padding: 18px 15px;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.table-admin td {
+    padding: 15px;
+    vertical-align: middle;
+    border-color: #f8f9fa;
+    font-weight: 500;
+}
+
+/* Badges elegantes */
+.badge-elegant {
+    background: linear-gradient(135deg, var(--color-gold), var(--color-gold-light));
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    font-size: 0.85rem;
+}
+
+/* Animaciones mejoradas */
+.fade-in {
+    animation: fadeInUp 0.8s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Footer público rediseñado */
+.public-footer {
+    background: linear-gradient(135deg, var(--color-primary) 0%, #2c3e50 100%);
+    color: white;
+    padding: 4rem 0 2rem;
+    margin-top: 6rem;
+}
+
+.public-footer a {
+    color: #bdc3c7;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-weight: 500;
+}
+
+.public-footer a:hover {
+    color: var(--color-gold-light);
+}
+
+/* Responsive mejorado */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.3rem;
+    }
+    
+    .public-form {
+        padding: 2rem 1.5rem;
+    }
+    
+    .room-card-body {
+        padding: 1.5rem;
+    }
+    
+    .btn-elegant {
+        padding: 12px 20px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Efectos de carga suaves */
+.loading {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.loaded {
+    opacity: 1;
+}
+
+/* Scroll personalizado */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, var(--color-gold), var(--color-gold-light));
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, var(--color-gold-dark), var(--color-gold));
+}
+/* ===== ESTILOS MEJORADOS PARA BOOTSTRAP ===== */
+
+/* Efectos hover mejorados */
+.hover-shadow {
+    transition: all 0.3s ease;
+}
+
+.hover-shadow:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15) !important;
+}
+
+/* Cards mejoradas */
+.card {
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+/* Botones con gradientes */
+.btn-gradient-primary {
+    background: linear-gradient(135deg, var(--color-caribe), var(--color-turquesa));
+    border: none;
+    color: white;
+}
+
+.btn-gradient-primary:hover {
+    background: linear-gradient(135deg, var(--color-turquesa), var(--color-caribe));
+    color: white;
+    transform: translateY(-1px);
+}
+
+/* Mejoras en tablas */
+.table-hover tbody tr {
+    transition: all 0.2s ease;
+}
+
+.table-hover tbody tr:hover {
+    background-color: rgba(0, 119, 182, 0.05);
+    transform: scale(1.01);
+}
+
+/* Badges mejorados */
+.badge {
+    font-weight: 500;
+    padding: 0.5em 0.8em;
+}
+
+/* Formularios mejorados */
+.form-control:focus, .form-select:focus {
+    border-color: var(--color-gold);
+    box-shadow: 0 0 0 0.2rem rgba(212, 175, 55, 0.25);
+}
+
+/* Progress bars mejorados */
+.progress {
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    transition: width 0.6s ease;
+}
+
+/* Navbar mejorado */
+.navbar-brand {
+    font-weight: 700;
+}
+
+/* Alertas mejoradas */
+.alert {
+    border: none;
+    border-radius: 12px;
+    border-left: 4px solid;
+}
+
+.alert-success {
+    border-left-color: #28a745;
+    background: linear-gradient(135deg, #d4edda, #c3e6cb);
+}
+
+.alert-danger {
+    border-left-color: #dc3545;
+    background: linear-gradient(135deg, #f8d7da, #f1b0b7);
+}
+
+.alert-warning {
+    border-left-color: #ffc107;
+    background: linear-gradient(135deg, #fff3cd, #ffeaa7);
+}
+
+/* Responsive improvements */
+@media (max-width: 768px) {
+    .container-fluid {
+        padding: 0 15px;
+    }
+    
+    .card-body {
+        padding: 1.5rem !important;
+    }
+    
+    .btn-group-sm .btn {
+        padding: 0.25rem 0.5rem;
+    }
+}
+
+/* Loading states */
+.loading {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, var(--color-gold), var(--color-gold-light));
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, var(--color-gold-dark), var(--color-gold));
+}
+
+/* Animation classes */
+.fade-in-up {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.slide-in-left {
+    animation: slideInLeft 0.5s ease-out;
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+/* ===== MEJORAS PARA EL REDISEÑO COMPLETO ===== */
+
+/* Hero Section Mejorada */
+.min-vh-80 {
+    min-height: 80vh;
+}
+
+.hero-section {
+    background: linear-gradient(135deg, 
+        rgba(0, 119, 182, 0.9) 0%, 
+        rgba(0, 180, 216, 0.8) 100%),
+        url('https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+/* Mejoras en Cards */
+.card {
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15) !important;
+}
+
+/* Botones mejorados */
+.btn {
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+}
+
+/* Tablas responsivas */
+.table-responsive {
+    border-radius: 12px;
+}
+
+/* Formularios mejorados */
+.form-control, .form-select {
+    border-radius: 8px;
+    border: 2px solid #e9ecef;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* Badges mejorados */
+.badge {
+    font-weight: 500;
+    padding: 0.5em 0.8em;
+}
+
+/* Navbar transparente en hero */
+.navbar-dark {
+    background: rgba(0, 0, 0, 0.2) !important;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+}
+
+/* Efectos de hover en enlaces */
+a {
+    transition: all 0.3s ease;
+}
+
+/* Mejoras en espaciado */
+.section-padding {
+    padding: 5rem 0;
+}
+
+/* Responsive improvements */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .display-4 {
+        font-size: 2rem;
+    }
+    
+    .btn-lg {
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+    }
+}
+
+/* Animaciones suaves */
+.fade-in {
+    animation: fadeIn 0.6s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.slide-in-left {
+    animation: slideInLeft 0.6s ease-out;
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Loading states */
+.loading {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+/* Custom utilities */
+.bg-gradient-primary {
+    background: linear-gradient(135deg, #007bff, #0056b3);
+}
+
+.text-shadow {
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+/* Mejoras en los toasts */
+.toast {
+    border-radius: 12px;
+    border: none;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+/* Progress bars animados */
+.progress-bar {
+    transition: width 1s ease-in-out;
+}
